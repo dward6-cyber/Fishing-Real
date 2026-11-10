@@ -1,6 +1,34 @@
 plugins {
-    // see https://fabricmc.net/develop/ for new versions
-    id 'net.fabricmc.fabric-loom' version '1.16-SNAPSHOT' apply false
-    // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
-    id 'net.neoforged.moddev' version '2.0.141' apply false
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.75' // или актуальная версия ModDevGradle
+}
+
+version = '1.21.1-1.0.0'
+group = 'com.expensivekoala.fishingreal'
+
+base {
+    archivesName = 'fishingreal'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = '21.1.65' // укажите нужную сборку NeoForge под 1.21.1
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        fishingreal {
+            sourceSet project.sourceSets.main
+        }
+    }
 }
